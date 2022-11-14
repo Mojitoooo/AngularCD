@@ -1,4 +1,21 @@
 ---
-#buildproject
-        - name: build app
-          shell: ng build --prod
+- name: create image docker
+  gather_facts: false
+  become: true
+  docker_image:
+    name: devops
+    build:
+      path: /var/lib/jenkins/workspace/devops
+      pull: no
+    source: build
+    state: present
+    force_source: true
+- name: run container docker
+  become: true
+  docker_container:
+    name: front_container
+    image: devops:latest
+    state: started
+    recreate: true
+    ports:
+      - "4200:80"
