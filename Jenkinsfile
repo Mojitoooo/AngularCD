@@ -6,7 +6,7 @@ pipeline {
 
     stage('GitHub Pull') {
      steps {
-				git branch: 'main', url: 'https:///github.com/Mojitoooo/AngulaarCD.git'
+				git branch: 'main', url: 'https://github.com/Mojitoooo/AngulaarCD.git'
 }
 }
    stage('ansible'){
